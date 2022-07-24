@@ -16,12 +16,15 @@ import java.util.ArrayList;
 import java.util.Random;
 
 public class ListActivity extends AppCompatActivity implements OnClickInterface {
-    private ArrayList<User>userList= new ArrayList<User>();
+    public static ArrayList<User>userList= new ArrayList<User>();
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_list);
+        DBHandler dbHandler = new DBHandler(this, null, null, 1);
+        userList = new ArrayList<>();
+        userList = dbHandler.getUsers();
         User user1=new User();
         user1.setName("User1");
         user1.setDescription("Hello1");
@@ -162,6 +165,7 @@ public class ListActivity extends AppCompatActivity implements OnClickInterface 
                 extras.putString("Desc",chosen_user.getDescription());
                 extras.putString("Pic",chosen_user.getUri());
                 extras.putBoolean("Followed", chosen_user.isFollowed());
+                extras.putInt("position", position);
                 myIntent.putExtra("User",chosen_user);
 
                 myIntent.putExtras(extras);
