@@ -2,6 +2,7 @@ package sg.edu.np.mad.mad_prac2;
 
 import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.recyclerview.widget.DefaultItemAnimator;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
@@ -15,8 +16,9 @@ import android.widget.ImageView;
 import java.util.ArrayList;
 import java.util.Random;
 
-public class ListActivity extends AppCompatActivity implements OnClickInterface {
+public class ListActivity extends AppCompatActivity implements RecyclerAdapter.OnImageListener{
     public static ArrayList<User>userList= new ArrayList<User>();
+    private RecyclerView recyclerView;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -105,15 +107,22 @@ public class ListActivity extends AppCompatActivity implements OnClickInterface 
         user10.setUri("android.resource://"+getPackageName()+"/"+R.drawable.profilepic);
         userList.add(user10);
 
-        RecyclerView recyclerView=findViewById(R.id.recyclerView);
-        myAdapter mAdaptor=new myAdapter(userList,this);
-        LinearLayoutManager mLayoutManager=new LinearLayoutManager(this);
-        recyclerView.setLayoutManager(mLayoutManager);
-        recyclerView.setAdapter(mAdaptor);
+        recyclerView = findViewById(R.id.recyclerView);
+        userList = new ArrayList<>();
+        userList = dbHandler.getUsers();
+        setAdapter();
 
 
 
     }
+    private void setAdapter() {
+        RecyclerAdapter adapter = new RecyclerAdapter(userList, this);
+        RecyclerView.LayoutManager layoutManager = new LinearLayoutManager(getApplicationContext());
+        recyclerView.setLayoutManager(layoutManager);
+        recyclerView.setItemAnimator(new DefaultItemAnimator());
+        recyclerView.setAdapter(adapter);
+    }
+
     private void MADness(){
         AlertDialog.Builder builder=new AlertDialog.Builder(this);
         builder.setMessage("MADness").setCancelable(false);
@@ -143,7 +152,7 @@ public class ListActivity extends AppCompatActivity implements OnClickInterface 
 
 
     @Override
-    public void onClick(int position) {
+    public void onImageClick(int position) {
         User chosen_user;
         chosen_user=userList.get(position);
         AlertDialog.Builder builder=new AlertDialog.Builder(this);

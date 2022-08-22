@@ -8,17 +8,23 @@
 
     <ImageView
         android:id="@+id/userpic2"
-        android:layout_width="92dp"
-        android:layout_height="86dp"
-        tools:layout_editor_absoluteX="14dp"
-        tools:layout_editor_absoluteY="21dp"
-        tools:srcCompat="@tools:sample/avatars" />
+        android:layout_width="120dp"
+        android:layout_height="130dp"
+        android:layout_marginStart="16dp"
+        android:layout_marginTop="10dp"
+        android:layout_marginEnd="16dp"
+        android:layout_marginBottom="10dp"
+        app:layout_constraintBottom_toTopOf="@+id/biguser"
+        app:layout_constraintEnd_toStartOf="@+id/userName2"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:srcCompat="@drawable/profilepic" />
 
     <TextView
         android:id="@+id/userName2"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginStart="35dp"
+        android:layout_marginStart="25dp"
         android:layout_marginTop="16dp"
         android:layout_marginEnd="148dp"
         android:text="TextView"
@@ -31,24 +37,25 @@
         android:id="@+id/userDesc2"
         android:layout_width="125dp"
         android:layout_height="56dp"
-        android:layout_marginStart="35dp"
-        android:layout_marginTop="60dp"
-        android:layout_marginEnd="48dp"
+        android:layout_marginStart="26dp"
+        android:layout_marginTop="68dp"
+        android:layout_marginEnd="124dp"
         android:text="TextView"
         android:textSize="18sp"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.103"
         app:layout_constraintStart_toEndOf="@+id/userpic2"
         app:layout_constraintTop_toTopOf="parent" />
 
     <ImageView
         android:id="@+id/biguser"
-        android:layout_width="300dp"
-        android:layout_height="300dp"
-        android:layout_marginTop="28dp"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.576"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="40dp"
+        android:layout_marginTop="44dp"
+        android:layout_marginBottom="20dp"
+        app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/userDesc2"
-        tools:srcCompat="@tools:sample/avatars" />
+        app:srcCompat="@drawable/profilepic" />
+
 </androidx.constraintlayout.widget.ConstraintLayout>
